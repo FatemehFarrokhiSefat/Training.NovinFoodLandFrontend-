@@ -1,0 +1,48 @@
+<div id="Screen">
+    <mat-card class="login-card">
+        <mat-card-header>
+          <div mat-card-avatar class="login-image"></div>
+          <mat-card-title>فود لند</mat-card-title>
+          <mat-card-subtitle>سامانه سفارش غذا</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="../../../assets/Images/photo_2023-08-30_00-46-34.jpg" alt="تجاری" height="350px">
+        <mat-card-content>
+            <!-- <p>
+              به فود لند خوش امدید.
+            </p><p>
+              لطفا برای استفاده از امکانات بیشتر وارد حساب کاربری خود شوید و یا یک
+              حساب کاربری برای خود ایجاد نمایید.
+            </p> -->
+            <form class="login-form">
+                <mat-form-field class="login-full-width">
+                  <mat-label>شماره همراه</mat-label>
+                  <input type="text" matInput minlength="11" maxlength="11" [formControl]="usernameFormControl" placeholder="برای مثال :-------0918">
+                  <mat-hint>شماره همراه خود را وارد کنید</mat-hint>
+                  <mat-error *ngIf="usernameFormControl.hasError('minlength')">
+                    <strong>مقدار شماره همراه کمتر از حد مجاز است!</strong>
+                  </mat-error>
+                  <mat-error *ngIf="usernameFormControl.hasError('required')">
+                    <strong>شماره همراه الزا میست! </strong>
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="login-full-width">
+                    <mat-label>کلمه عبور</mat-label>
+                    <input type="password" matInput  minlength="11" maxlength="11" [formControl]="passwordFormControl" placeholder="رمز عبور">
+                    <mat-hint>رمز عبور خود را وارد کنید</mat-hint>
+                    <mat-error *ngIf="passwordFormControl.hasError('minlength')">
+                        <strong>مقدار رمز عبور کمتر از حد مجاز است!</strong>
+                      </mat-error>
+                    <mat-error *ngIf="passwordFormControl.hasError('required')">
+                      <strong>رمز عبور الزا میست! </strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-checkbox  name="Keepme" [(ngModel)]="KeePme" class="example-margin">مرا به خاطر بسپار</mat-checkbox>
+            </form>
+          </mat-card-content>
+        <mat-progress-bar *ngIf="isBusy == true" mode="indeterminate" color="accent"></mat-progress-bar>
+        <mat-card-actions *ngIf="isBusy == false">
+          <button [disabled]="usernameFormControl.invalid || passwordFormControl.invalid" mat-raised-button color="accent" (click)="check()">ورود</button>
+          <button mat-raised-button>ثبت نام</button>
+        </mat-card-actions>
+      </mat-card>      
+</div>

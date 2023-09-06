@@ -1,0 +1,44 @@
+#Screen {
+  background-color: #ededed;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  background-color: white;
+  max-width: 400px;
+}
+
+.login-image {
+  background-image: url("../../../assets/Images/icon.jpg");
+  background-size: cover;
+}
+
+mat-card-title,
+mat-card-subtitle,
+button,
+mat-form-field,
+mat-label,
+mdc-label,
+mat-hint{
+  font-family: Persian;
+}
+
+.login-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin: 15px 0;
+}
+
+.login-full-width {
+  width: 100%;
+}
+
+.example-margin {
+  margin: 1px 0;
+}
+
+
