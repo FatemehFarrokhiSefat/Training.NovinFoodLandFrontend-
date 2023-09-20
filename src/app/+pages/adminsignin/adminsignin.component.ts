@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import { BackendSecurityService } from 'src/app/+services/backend-security.service';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css'],
+  selector: 'app-adminsignin',
+  templateUrl: './adminsignin.component.html',
+  styleUrls: ['./adminsignin.component.css'],
 })
-export class SigninComponent {
+export class AdminsigninComponent {
   constructor(private backend: BackendSecurityService, 
     private  _snackBar: MatSnackBar, 
     private router:Router) {}
@@ -17,15 +17,15 @@ export class SigninComponent {
   isBusy:boolean=false;
   message:string='';
   KeePme:boolean=false;
-  usernameFormControl = new FormControl('', [Validators.required,Validators.maxLength(11)]);
-  passwordFormControl = new FormControl('', [Validators.required,Validators.maxLength(8)]);
+  usernameFormControl = new FormControl('', [Validators.required,Validators.maxLength(5),Validators.minLength(5)]);
+  passwordFormControl = new FormControl('', [Validators.required,Validators.maxLength(5),Validators.minLength(5)]);
   
   check() {
     this.isBusy = true;
     let username: string | undefined = this.usernameFormControl.value?.toString();
     let password: string | undefined = this.passwordFormControl.value?.toString();
 
-    this.backend.signin(username ?? '', password ?? '').subscribe((r) => 
+    this.backend.adminsignin(username ?? '', password ?? '').subscribe((r) => 
     {
     let result= r as any;
     if(result.isOK==false)
@@ -42,12 +42,8 @@ export class SigninComponent {
         localStorage.setItem('token',result.token);
       }    
       switch(result.type){
-
-        case 'RestaurantOwner':
-        this.router.navigate(['/restaurants']);
-        break;
-        case 'Customer':
-        this.router.navigate(['/customers']);
+        case'AdminSystem':
+        this.router.navigate(['/admins']);
         break;
       }
     }

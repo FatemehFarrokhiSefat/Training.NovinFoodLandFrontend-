@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>افزودن رستوران جدید</h1>
+<div mat-dialog-content>
+    <mat-form-field class="login-full-width">
+        <mat-label>عنوان رستوران</mat-label>
+        <input type="text" matInput minlength="11" maxlength="11" [formControl]="titleFormControl" placeholder="برای مثال :عنوان رستوران">
+        <mat-hint>شماره همراه خود را وارد کنید</mat-hint>
+        <mat-error *ngIf="titleFormControl.hasError('minlength')">
+          <strong>مقدار شماره همراه کمتر از حد مجاز است!</strong>
+        </mat-error>
+        <mat-error *ngIf="titleFormControl.hasError('required')"> 
+          <strong>عنوان رستوران الزا میست!</strong>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="login-full-width">
+        <mat-label>ادرس رستوران</mat-label>
+        <input type="text" matInput minlength="11" maxlength="11" [formControl]="addressFormControl" placeholder="برای مثال :ادرس رستوران">
+        <mat-hint>شماره همراه خود را وارد کنید</mat-hint>
+        <mat-error *ngIf="addressFormControl.hasError('minlength')">
+          <strong>مقدار شماره همراه کمتر از حد مجاز است!</strong>
+        </mat-error>
+        <mat-error *ngIf="addressFormControl.hasError('required')"> 
+          <strong>ادرس رستوران الزا میست!</strong>
+        </mat-error>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button cdkFocusInitial color="accent">تایید</button>
+  <button mat-raised-button matDialogClose>انصراف</button>
+</div>
+

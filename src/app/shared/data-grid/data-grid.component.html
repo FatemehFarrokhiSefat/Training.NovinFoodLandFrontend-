@@ -1,0 +1,16 @@
+<table>
+    <thead>
+        <tr>
+            <th *ngFor="let item of columns">{{item}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of data">
+            <td *ngFor="let col of columns">{{item[col]}}</td>
+            <td>
+                <button mat-raised-button color="accent">ویرایش</button>&nbsp;
+                <button mat-raised-button color="Basic">حذف</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

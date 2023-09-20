@@ -15,12 +15,17 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SignupComponent } from './+pages/signup/signup.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { AdminsigninComponent } from './+pages/adminsignin/adminsignin.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SigninComponent
+    SigninComponent,
+    SignupComponent,
+    AdminsigninComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatInputModule,
     MatCheckboxModule,
     MatProgressBarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

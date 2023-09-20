@@ -5,6 +5,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class BackendService {
-  securityAPI='https://localhost:7088/';
+  securityAPI='http://localhost:5071/';
   constructor(public http:HttpClient) { }
 }

@@ -22,7 +22,7 @@ button,
 mat-form-field,
 mat-label,
 mdc-label,
-mat-hint,mat-checkbox {
+mat-hint{
   font-family: Persian;
 }
 
@@ -40,3 +40,4 @@ mat-hint,mat-checkbox {
 .example-margin {
   margin: 1px 0;
 }
+

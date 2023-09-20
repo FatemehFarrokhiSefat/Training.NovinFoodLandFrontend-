@@ -1,0 +1,121 @@
+<div id="Screen">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <div mat-card-avatar class="login-image"></div>
+      <mat-card-title>فود لند</mat-card-title>
+      <mat-card-subtitle>ثبت نام سامانه سفارش غذا </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="signupForm" class="login-form">
+        <mat-radio-group formControlName="type" aria-label="انتخاب کنید">
+          <mat-radio-button value="2">رستوران دار هستم</mat-radio-button>
+          <mat-radio-button value="3">مشتری هستم</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-form-field class="login-full-width">
+          <mat-label>شماره همراه</mat-label>
+          <input
+            type="username"
+            matInput
+            minlength="11"
+            maxlength="11"
+            formControlName="username"
+            placeholder="برای مثال :-------0918"
+          />
+          <mat-hint>شماره همراه خود را وارد کنید</mat-hint>
+          <mat-error
+            *ngIf="signupForm.controls['username'].hasError('minlength')"
+          >
+            <strong>مقدار شماره همراه کمتراز حد مجازاست!</strong>
+          </mat-error>
+          <mat-error
+            *ngIf="signupForm.controls['username'].hasError('required')"
+          >
+            <strong>شماره همراه الزا میست!</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="login-full-width">
+          <mat-label>کلمه عبور</mat-label>
+          <input
+            type="password"
+            matInput
+            minlength="8"
+            maxlength="8"
+            formControlName="password"
+            placeholder="رمز عبور"
+          />
+          <mat-hint>رمز عبور خود را وارد کنید</mat-hint>
+          <mat-error
+            *ngIf="signupForm.controls['password'].hasError('minlength')"
+          >
+            <strong>مقدار رمز عبور کمتر از حد مجاز است!</strong>
+          </mat-error>
+          <mat-error
+            *ngIf="signupForm.controls['password'].hasError('required')"
+          >
+            <strong>رمز عبور الزا میست! </strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="login-full-width">
+          <mat-label>نام و نام خانوادگی</mat-label>
+          <input
+            type="fullname"
+            matInput
+            minlength="11"
+            maxlength="11"
+            formControlName="fullname"
+            placeholder="مثال: فاطمه فرخی "
+          />
+          <mat-hint>نام و نام خانوادگی خود را وارد کنید</mat-hint>
+          <mat-error
+            *ngIf="signupForm.controls['fullname'].hasError('minlength')"
+          >
+            <strong> نام و نام خانوادگی کمتر از حد مجاز است!</strong>
+          </mat-error>
+          <mat-error
+            *ngIf="signupForm.controls['fullname'].hasError('required')"
+          >
+            <strong> نام و نام خانوادگی الزا میست! </strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="login-full-width">
+          <mat-label>پست الکترونیکی</mat-label>
+          <input
+            type="email"
+            matInput
+            minlength="11"
+            maxlength="11"
+            formControlName="email"
+            placeholder="مثال: fatemehf12@gmail.com"
+          />
+          <mat-hint>پست الکترونیکی خود را وارد کنید</mat-hint>
+          <mat-error *ngIf="signupForm.controls['email'].hasError('minlength')">
+            <strong> پست الکترونیکی کمتر از حد مجاز است!</strong>
+          </mat-error>
+          <mat-error *ngIf="signupForm.controls['email'].hasError('required')">
+            <strong> پست الکترونیکی الزا میست! </strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-progress-bar
+      *ngIf="isBusy == true"
+      mode="indeterminate"
+      color="accent"
+    ></mat-progress-bar>
+    <mat-card-actions *ngIf="isBusy == false">
+      <button
+        [disabled]="signupForm.invalid"
+        (click)="signup()"
+        mat-raised-button
+        color="accent"
+      >
+        ثبت نام
+      </button>
+      <button mat-raised-button [routerLink]="'/signin'">ورود به سیستم</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
