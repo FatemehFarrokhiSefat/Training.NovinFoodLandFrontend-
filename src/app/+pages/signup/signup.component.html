@@ -6,7 +6,7 @@
       <mat-card-subtitle>ثبت نام سامانه سفارش غذا </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <form [formGroup]="signupForm" class="login-form">
+      <form [formGroup]="signupForm" class="login-form" (ngSubmit)="onSubmit()">
         <mat-radio-group formControlName="type" aria-label="انتخاب کنید">
           <mat-radio-button value="2">رستوران دار هستم</mat-radio-button>
           <mat-radio-button value="3">مشتری هستم</mat-radio-button>
@@ -19,10 +19,16 @@
             matInput
             minlength="11"
             maxlength="11"
+            pattern="09[0-9]{9}"
             formControlName="username"
             placeholder="برای مثال :-------0918"
           />
           <mat-hint>شماره همراه خود را وارد کنید</mat-hint>
+          <mat-error
+          *ngIf="signupForm.controls['username'].errors?.['pattern']"
+          >
+            <strong>شماره همراه وارد شده صحیح نیست</strong>
+          </mat-error>
           <mat-error
             *ngIf="signupForm.controls['username'].hasError('minlength')"
           >
@@ -42,10 +48,18 @@
             matInput
             minlength="8"
             maxlength="8"
+            pattern="^((?!.*[s])(?=.*[A-Z])(?=.*d).{8,99})"
             formControlName="password"
             placeholder="رمز عبور"
           />
           <mat-hint>رمز عبور خود را وارد کنید</mat-hint>
+          <mat-error
+            *ngIf="signupForm.controls['password'].errors?.['pattern']"
+          >
+            <strong
+              >رمز عبور باید حداقل شامل عددیا حرف بزرگ و حرف کوچک باشد</strong
+            >
+          </mat-error>
           <mat-error
             *ngIf="signupForm.controls['password'].hasError('minlength')"
           >
@@ -59,16 +73,49 @@
         </mat-form-field>
 
         <mat-form-field class="login-full-width">
+          <mat-label>تکرار کلمه عبور</mat-label>
+          <input
+            type="password"
+            matInput
+            minlength="8"
+            maxlength="8"
+            pattern="^((?!.*[s])(?=.*[A-Z])(?=.*d).{8,99})"
+            formControlName="repeatpassword"
+            placeholder="تکرار کلمه عبور"
+          />
+          <mat-hint>رمز عبور خود را دوباره تکرار کنید</mat-hint>
+          <mat-error  *ngIf="signupForm.controls['repeatpassword'].hasError('minlength')">
+            <strong>مقدار رمز عبور کمتر از حد مجاز است!</strong>
+          </mat-error>
+          <mat-error *ngIf="signupForm.controls['repeatpassword'].hasError('pattern')">
+            <strong
+              >رمز عبور صحیح وارد نشده است!</strong
+            >
+          </mat-error>
+          <mat-error
+            *ngIf="signupForm.controls['repeatpassword'].hasError('required')"
+          >
+            <strong>تکرار رمز عبور الزا میست !</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="login-full-width">
           <mat-label>نام و نام خانوادگی</mat-label>
           <input
             type="fullname"
             matInput
             minlength="11"
             maxlength="11"
+            pattern="^[\u0600-\u06FF\s]+$"
             formControlName="fullname"
             placeholder="مثال: فاطمه فرخی "
           />
           <mat-hint>نام و نام خانوادگی خود را وارد کنید</mat-hint>
+          <mat-error
+            *ngIf="signupForm.controls['fullname'].errors?.['pattern']"
+          >
+            <strong>لطفا از کیبورد فارسی استفاده کنید</strong>
+          </mat-error>
           <mat-error
             *ngIf="signupForm.controls['fullname'].hasError('minlength')"
           >
@@ -82,12 +129,33 @@
         </mat-form-field>
 
         <mat-form-field class="login-full-width">
+          <mat-label>آدرس</mat-label>
+          <input
+            type="fullname"
+            matInput
+            pattern="^[\u0600-\u06FF\s]+$"
+            formControlName="address"
+            placeholder="مثال: همدان - "
+          />
+          <mat-hint>آدرس خود را وارد کنید</mat-hint>
+          <mat-error
+            *ngIf="signupForm.controls['address'].errors?.['pattern']"
+          >
+            <strong>لطفا از کیبورد فارسی استفاده کنید</strong>
+          </mat-error>
+          <mat-error
+            *ngIf="signupForm.controls['address'].hasError('required')"
+          >
+            <strong>آدرس الزا میست! </strong>
+          </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field class="login-full-width">
           <mat-label>پست الکترونیکی</mat-label>
           <input
             type="email"
             matInput
-            minlength="11"
-            maxlength="11"
             formControlName="email"
             placeholder="مثال: fatemehf12@gmail.com"
           />
