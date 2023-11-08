@@ -1,16 +1,36 @@
 <table>
-    <thead>
-        <tr>
-            <th *ngFor="let item of columns">{{item}}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of data">
-            <td *ngFor="let col of columns">{{item[col]}}</td>
-            <td>
-                <button mat-raised-button color="accent">ویرایش</button>&nbsp;
-                <button mat-raised-button color="Basic">حذف</button>
-            </td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th *ngFor="let item of columns">{{ item.title }}</th>
+    </tr>
+    <tr>
+      <th *ngFor="let item of columns">
+            <input class="search" placeholder="جستجو کنید" >
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data">
+      <td *ngFor="let col of columns">
+        <ng-container [ngSwitch]="col.type">
+          <ng-container *ngSwitchCase="'text'">{{ item[col.field] }}</ng-container>
+
+          <ng-container *ngSwitchCase="'check'">
+            <mat-checkbox type="checkbox" [checked]="item[col.field]"></mat-checkbox>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'button'">
+            <button mat-raised-button type="button" >{{ item[col.field] }}</button>
+          </ng-container>
+
+           <ng-container *ngSwitchDefault>{{ item[col.field] }}</ng-container>
+        </ng-container>
+      </td>
+      <td>
+        <button mat-raised-button color="accent"  (click)="onEdit.emit(item)"><mat-icon   fontIcon="edit"></mat-icon>
+      </button>&nbsp;
+        <button mat-raised-button color="warn"  (click)="onDelete.emit(item)"><mat-icon  fontIcon="delete"></mat-icon></button>
+      </td>
+    </tr>
+  </tbody>
 </table>

@@ -1,12 +1,26 @@
 table {
-    border-collapse: collapse;
-    width: 40%;
+    border-collapse:collapse;
+    width: 80%;
   }
   
-  th, td,tr {
+  th, td,tr{
     padding: 15px;
     text-align:center;
     border-bottom: 1px solid #DDD;
   }
   
-  tr:hover {background-color: hwb(60 0% 0% / 0.056);}
+  tr:hover {background-color: hwb(60 0% 0% / 0.132);}
+
+  .example-full-width {
+    width: 160px;
+    font-family: Persian;
+  }
+
+.search{
+  padding: 5px;
+  width:150px;
+  border-radius:5px;
+  box-sizing: border-box;
+  font-family: Persian;
+}
+

@@ -48,19 +48,19 @@
             matInput
             minlength="8"
             maxlength="8"
-            pattern="^((?!.*[s])(?=.*[A-Z])(?=.*d).{8,99})"
+            pattern="^(?=.*[a-z])(?=.*[A-Z]).*$"
             formControlName="password"
             placeholder="رمز عبور"
           />
           <mat-hint>رمز عبور خود را وارد کنید</mat-hint>
-          <mat-error
-            *ngIf="signupForm.controls['password'].errors?.['pattern']"
-          >
-            <strong
-              >رمز عبور باید حداقل شامل عددیا حرف بزرگ و حرف کوچک باشد</strong
+           <mat-error
+              *ngIf="signupForm.controls['password'].errors?.['pattern']"
             >
-          </mat-error>
-          <mat-error
+              <strong
+                >رمز عبور باید حداقل شامل عددیا حرف بزرگ و حرف کوچک باشد</strong
+              >
+            </mat-error>
+           <mat-error
             *ngIf="signupForm.controls['password'].hasError('minlength')"
           >
             <strong>مقدار رمز عبور کمتر از حد مجاز است!</strong>
@@ -74,20 +74,20 @@
 
         <mat-form-field class="login-full-width">
           <mat-label>تکرار کلمه عبور</mat-label>
-          <input
-            type="password"
-            matInput
-            minlength="8"
-            maxlength="8"
-            pattern="^((?!.*[s])(?=.*[A-Z])(?=.*d).{8,99})"
-            formControlName="repeatpassword"
-            placeholder="تکرار کلمه عبور"
-          />
+            <input
+              type="password"
+              matInput
+              minlength="8"
+              maxlength="8"
+              pattern="^(?=.*[a-z])(?=.*[A-Z]).*$"
+              formControlName="repeatpassword"
+              placeholder="تکرار کلمه عبور"
+            />
           <mat-hint>رمز عبور خود را دوباره تکرار کنید</mat-hint>
           <mat-error  *ngIf="signupForm.controls['repeatpassword'].hasError('minlength')">
             <strong>مقدار رمز عبور کمتر از حد مجاز است!</strong>
           </mat-error>
-          <mat-error *ngIf="signupForm.controls['repeatpassword'].hasError('pattern')">
+          <mat-error *ngIf="signupForm.controls['repeatpassword'].errors?.['mustMatch']">
             <strong
               >رمز عبور صحیح وارد نشده است!</strong
             >
@@ -150,7 +150,6 @@
           </mat-error>
         </mat-form-field>
 
-
         <mat-form-field class="login-full-width">
           <mat-label>پست الکترونیکی</mat-label>
           <input
@@ -169,6 +168,7 @@
         </mat-form-field>
       </form>
     </mat-card-content>
+
     <mat-progress-bar
       *ngIf="isBusy == true"
       mode="indeterminate"
@@ -180,6 +180,7 @@
         (click)="signup()"
         mat-raised-button
         color="accent"
+        type="submit"
       >
         ثبت نام
       </button>
