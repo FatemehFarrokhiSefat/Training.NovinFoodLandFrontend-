@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators,AbstractControl,ValidatorFn  } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { catchError } from 'rxjs';
+import { catchError, of } from 'rxjs';
 import { BackendSecurityService } from 'src/app/+services/backend-security.service';
 
 @Component({
@@ -48,25 +48,32 @@ export class SignupComponent {
     let address: string | undefined = this.signupForm.controls['address'].value?.toString();
     let email: string | undefined = this.signupForm.controls['email'].value?.toString();
     let type: number | undefined = Number (this.signupForm.controls['type'].value?.toString());
+
     this.backend.signup(username??'',password??'',type??3,fullname??'',email??'')
-      .pipe(
-        catchError(this.handleError)
-      ) 
       .subscribe(r =>
       {
-        this._snackBar.open('ثبت نام با موفقیت انجام شد','',{
-          duration:2000
-        }).afterDismissed().subscribe(t=>{
-          this.router.navigate(['/signin']);
-        });
-    });
-    console.log(this.signupForm);
+        if(r && (r as any).serverError)
+        {
+          this.isBusy=false;
+          this.message=(r as any).serverError;
+        }
+        else
+        {
+          this._snackBar.open('ثبت نام با موفقیت انجام شد','',{
+            duration:2000
+          }).afterDismissed().subscribe(t=>{
+            this.router.navigate(['/signin']);
+          });
+        }
+      }
+    );
+    // console.log(this.signupForm);
   }
 
-  handleError(error:HttpErrorResponse){
-    console.log(error);
-    return "ok";
-  }
+  // handleError(error:HttpErrorResponse){
+  //   console.log(error);
+  //   return "ok";
+  // }
   
   fullname = new FormControl(null, [
     (c: AbstractControl) => Validators.required(c),

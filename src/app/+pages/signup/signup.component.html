@@ -169,6 +169,9 @@
       </form>
     </mat-card-content>
 
+    <div class="error" *ngIf="message">
+      {{message}}
+    </div>
     <mat-progress-bar
       *ngIf="isBusy == true"
       mode="indeterminate"
@@ -176,7 +179,7 @@
     ></mat-progress-bar>
     <mat-card-actions *ngIf="isBusy == false">
       <button
-        [disabled]="signupForm.invalid"
+        
         (click)="signup()"
         mat-raised-button
         color="accent"
@@ -188,3 +191,4 @@
     </mat-card-actions>
   </mat-card>
 </div>
+<!-- [disabled]="signupForm.invalid" -->

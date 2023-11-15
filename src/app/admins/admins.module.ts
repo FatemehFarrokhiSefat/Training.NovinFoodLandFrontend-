@@ -11,13 +11,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { UsersComponent } from './+pages/users/users.component';
 import { DataGridComponent } from '../shared/data-grid/data-grid.component';
+import { RequestComponent } from './+pages/request/request.component';
 
 
 @NgModule({
   declarations: [
     AdminsComponent,
     NavigationComponent,
-    UsersComponent
+    UsersComponent,
+    RequestComponent
   ],
   imports: [
     CommonModule,

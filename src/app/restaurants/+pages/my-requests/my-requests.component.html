@@ -1,3 +1,7 @@
 <div>
     <button (click)="create()" mat-raised-button color="accent">رستوران جدید</button>
 </div>
+<app-data-grid
+[datasource]="'http://localhost:5064/myrequestlist'"
+[columns]="columns"
+/>
